@@ -1,0 +1,1 @@
+{"Name":"\u504F\u632F","IsPlayer":true,"CenterPlanet":{"ConfigId":10004,"Position":{"x":0,"y":0,"z":0},"Radius":2,"ChildOrbits":[{"Position":{"x":0,"y":0,"z":0},"Radius":10,"ChildPlanets":[{"ConfigId":10001,"Position":{"x":-9.898167,"y":0,"z":1.423482},"Radius":1,"ChildOrbits":[]},{"ConfigId":10003,"Position":{"x":9.121719,"y":0,"z":-4.098078},"Radius":0.75,"ChildOrbits":[]}]}]}}

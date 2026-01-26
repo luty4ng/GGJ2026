@@ -1,0 +1,26 @@
+[
+  {
+    "id": 10000,
+    "name": "月眼",
+    "desc": "单层的三星系统，可以应付各类情景",
+    "factionId": 10,
+    "icon_asset_id": "Icon_PresetGalaxy_1",
+    "setting": "C_PlayerGalaxyPreset_1"
+  },
+  {
+    "id": 10001,
+    "name": "雪人",
+    "desc": "双层星系，在触发父子星响应上有优势",
+    "factionId": 10,
+    "icon_asset_id": "Icon_PresetGalaxy_2",
+    "setting": "C_PlayerGalaxyPreset_2"
+  },
+  {
+    "id": 10002,
+    "name": "偏振",
+    "desc": "一根轨道上绑定有两个星球，可能有意想不到的效用",
+    "factionId": 10,
+    "icon_asset_id": "Icon_PresetGalaxy_3",
+    "setting": "C_PlayerGalaxyPreset_3"
+  }
+]

@@ -1,0 +1,31 @@
+---
+description: 
+globs: *.cs
+alwaysApply: false
+---
+
+# Unity 项目开发规则
+
+### 命名约定
+- **类名**: 使用PascalCase，例如 `PlayerController`
+- **方法名**: 使用PascalCase，例如 `StartGame()`
+- **属性名**: 使用PascalCase，例如 `PlayerHealth { get; set; }`
+- **常量**: 使用k_前缀加camelCase，例如 `k_maxHealth`
+- **静态**: 使用s_前缀加camelCase，例如 `s_maxHealth`
+- **公共字段**: 使用camelCase，例如 `playerHealth`
+- **私有字段**: 使用m_前缀加camelCase，例如 `m_playerTransform`
+
+### 注意事项
+- 不要添加注释，除非特别说明
+- 组件引用应在Awake()或Start()中获取并缓存
+- 避免在Update()中进行耗时操作或分配内存
+- 使用C# 8.0+的新特性
+- if-else尽量不要写在一行，方便断点调试
+- 实例和事件的创建释放成对出现，避免内存泄漏
+
+### 习惯
+- 项目中存在OdinInspector，对于简单的Inspector拓展，优先使用Odin
+- 项目中存在DoTween插件，对于简单的动画表现，优先使用DoTween完成
+- 如果检测到引用不到插件的程序集，则改用不使用插件的版本
+
+

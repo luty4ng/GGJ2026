@@ -1,0 +1,21 @@
+{
+    "name": "Cinemachine.Editor.Tests",
+    "references": [
+        "Cinemachine",
+        "com.unity.cinemachine.editor",
+        "Unity.Timeline",
+        "Unity.Timeline.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

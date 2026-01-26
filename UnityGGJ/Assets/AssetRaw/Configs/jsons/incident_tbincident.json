@@ -1,0 +1,13 @@
+[
+  {
+    "id": 10001,
+    "title": "随机可接触星系",
+    "description": "检测到某派系星系信号，点击接触",
+    "incident_type": 1,
+    "has_duraction": false,
+    "duration": 0,
+    "cooldown": 0,
+    "pending": true,
+    "option_list": []
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "id": 10000,
+    "name": "母星",
+    "desc": "母星，从很早之前就存在于此",
+    "stats": {
+      "thermalEnergy": 0,
+      "electromagneticStrength": 0,
+      "structuralIntegrity": 0,
+      "gravityStrength": 0,
+      "chemicalActivity": 0,
+      "anchorSensitivity": 0
+    },
+    "icon_asset_id": "Icon_PlanetExp",
+    "prefab": "P_Planet_R"
+  },
+  {
+    "id": 10001,
+    "name": "游离星",
+    "desc": "大量游离于各轨域间的天体，星核遭受过致命损伤，往往无法产生完整的共振效应（技能），由于天体特性表达也受损其可能呈现出任何形态，适合用作临时或可消耗的卫星。",
+    "stats": {
+      "thermalEnergy": 3,
+      "electromagneticStrength": 3,
+      "structuralIntegrity": 6,
+      "gravityStrength": 5,
+      "chemicalActivity": 2,
+      "anchorSensitivity": 1
+    },
+    "icon_asset_id": "Icon_Planet_1",
+    "prefab": "P_Planet_1"
+  },
+  {
+    "id": 10002,
+    "name": "蔚蓝星",
+    "desc": "被海洋覆盖的星球，仔细观察的话，能看到一座耸立的山，好奇是否有人曾登顶过。",
+    "stats": {
+      "thermalEnergy": 1,
+      "electromagneticStrength": 2,
+      "structuralIntegrity": 2,
+      "gravityStrength": 1,
+      "chemicalActivity": 2,
+      "anchorSensitivity": 5
+    },
+    "icon_asset_id": "Icon_Planet_2",
+    "prefab": "P_Planet_2"
+  },
+  {
+    "id": 10003,
+    "name": "沙尘星",
+    "desc": "被黄沙覆盖的星球，据说上面栖息着一只巨虫，能像游泳般在黄沙间穿梭。",
+    "stats": {
+      "thermalEnergy": 2,
+      "electromagneticStrength": 3,
+      "structuralIntegrity": 5,
+      "gravityStrength": 4,
+      "chemicalActivity": 3,
+      "anchorSensitivity": 2
+    },
+    "icon_asset_id": "Icon_Planet_3",
+    "prefab": "P_Planet_3"
+  },
+  {
+    "id": 10004,
+    "name": "紫烟星",
+    "desc": "被弱腐蚀性大气覆盖的星系，曾经是一副生机盎然的景象，直到一位不速之客和他的幽灵守卫的到来。",
+    "stats": {
+      "thermalEnergy": 5,
+      "electromagneticStrength": 2,
+      "structuralIntegrity": 4,
+      "gravityStrength": 3,
+      "chemicalActivity": 2,
+      "anchorSensitivity": 3
+    },
+    "icon_asset_id": "Icon_Planet_4",
+    "prefab": "P_Planet_4"
+  },
+  {
+    "id": 10005,
+    "name": "渴血星",
+    "desc": "被血色的大气遮蔽，如梦境般的星球，曾经被一直巨大的野兽占有，直到某位猎人将其击败。",
+    "stats": {
+      "thermalEnergy": 4,
+      "electromagneticStrength": 3,
+      "structuralIntegrity": 3,
+      "gravityStrength": 3,
+      "chemicalActivity": 3,
+      "anchorSensitivity": 4
+    },
+    "icon_asset_id": "Icon_Planet_5",
+    "prefab": "P_Planet_5"
+  },
+  {
+    "id": 10006,
+    "name": "颜料星",
+    "desc": "据说其上的颜料能够绘制出一个完整的新世界，可惜的是，至今为止除了某位带着奴隶骑士的大小姐，没有人能驾驭这种颜料。",
+    "stats": {
+      "thermalEnergy": 6,
+      "electromagneticStrength": 2,
+      "structuralIntegrity": 4,
+      "gravityStrength": 5,
+      "chemicalActivity": 3,
+      "anchorSensitivity": 2
+    },
+    "icon_asset_id": "Icon_Planet_6",
+    "prefab": "P_Planet_6"
+  },
+  {
+    "id": 10007,
+    "name": "至暗星",
+    "desc": "某位不自量力之人试图用颜料星的颜料绘制“五彩斑斓的黑”，这是他作品发生的变化。",
+    "stats": {
+      "thermalEnergy": 3,
+      "electromagneticStrength": 5,
+      "structuralIntegrity": 2,
+      "gravityStrength": 2,
+      "chemicalActivity": 7,
+      "anchorSensitivity": 4
+    },
+    "icon_asset_id": "Icon_Planet_7",
+    "prefab": "P_Planet_7"
+  },
+  {
+    "id": 10008,
+    "name": "符文星",
+    "desc": "表面的玻璃上写满了奇怪的符文，使某个疯狂的恐龙科学家的造物吗",
+    "stats": {
+      "thermalEnergy": 2,
+      "electromagneticStrength": 6,
+      "structuralIntegrity": 1,
+      "gravityStrength": 1,
+      "chemicalActivity": 5,
+      "anchorSensitivity": 7
+    },
+    "icon_asset_id": "Icon_Planet_8",
+    "prefab": "P_Planet_8"
+  }
+]

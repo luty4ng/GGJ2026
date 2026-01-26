@@ -1,0 +1,21 @@
+Cd /d %~dp0
+echo %CD%
+
+set WORKSPACE=../..
+set LUBAN_DLL=%WORKSPACE%\Tools\Luban\Luban.dll
+set CONF_ROOT=.
+set UNITYPROJECT=AnchoredExpanse/
+set DATA_OUTPATH=%WORKSPACE%/%UNITYPROJECT%/Assets/AssetRaw/Configs/jsons/
+set CODE_OUTPATH=%WORKSPACE%/%UNITYPROJECT%/Assets/Scripts/HotFix/GameProto/GameConfig/
+
+xcopy /s /e /i /y "%CONF_ROOT%\CustomTemplate\ConfigSystemJson.cs" "%WORKSPACE%\%UNITYPROJECT%\Assets\Scripts\HotFix\GameProto\ConfigSystem.cs"
+
+dotnet %LUBAN_DLL% ^
+    -t client ^
+    -c cs-simple-json ^
+    -d json^
+    --conf %CONF_ROOT%\luban.conf ^
+    -x outputCodeDir=%CODE_OUTPATH% ^
+    -x outputDataDir=%DATA_OUTPATH% 
+pause
+

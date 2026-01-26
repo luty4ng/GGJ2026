@@ -1,0 +1,94 @@
+[
+  {
+    "id": 10000,
+    "name": "金属加工厂",
+    "desc": "擅长制作合金",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 3,
+    "suitable_recipe": [
+      10000
+    ],
+    "ability_cast_pair": {
+      "abilityId": 0,
+      "strategyType": ""
+    },
+    "icon": "",
+    "prefab": ""
+  },
+  {
+    "id": 20001,
+    "name": "制导导弹发射井",
+    "desc": "锁定目标并发射制导导弹，可绕行并追踪，适合对付机动目标。",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 1,
+    "suitable_recipe": [],
+    "ability_cast_pair": {
+      "abilityId": 10001,
+      "strategyType": "NearestPlanetStrategy"
+    },
+    "icon": "Icon_MissleStation",
+    "prefab": ""
+  },
+  {
+    "id": 20002,
+    "name": "热能射线塔",
+    "desc": "持续照射目标并快速升温，引发灼烧与过热效应。",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 1,
+    "suitable_recipe": [],
+    "ability_cast_pair": {
+      "abilityId": 10002,
+      "strategyType": "NearestProjectileAndPlanetStragegy"
+    },
+    "icon": "Icon_HeatRayTower",
+    "prefab": ""
+  },
+  {
+    "id": 20003,
+    "name": "穿透激光阵列",
+    "desc": "高能相干光束，可穿透护甲/结构并对直线路径造成多段伤害。",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 1,
+    "suitable_recipe": [],
+    "ability_cast_pair": {
+      "abilityId": 10003,
+      "strategyType": "NearestPlanetStrategy"
+    },
+    "icon": "Icon_LaserGroup",
+    "prefab": ""
+  },
+  {
+    "id": 20004,
+    "name": "动能抛射炮台",
+    "desc": "发射高密度物质弹丸，命中后造成动能冲击伤害。",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 1,
+    "suitable_recipe": [],
+    "ability_cast_pair": {
+      "abilityId": 10004,
+      "strategyType": "NearestPlanetStrategy"
+    },
+    "icon": "Icon_EjectStation",
+    "prefab": ""
+  },
+  {
+    "id": 20005,
+    "name": "跃迁炸弹发生器",
+    "desc": "向目标区域投送跃迁炸弹，短延迟后产生空间撕裂爆炸，适合清场。",
+    "slot_req": 1,
+    "attach_type": 1,
+    "building_type": 1,
+    "suitable_recipe": [],
+    "ability_cast_pair": {
+      "abilityId": 10005,
+      "strategyType": "NearestPlanetStrategy"
+    },
+    "icon": "Icon_JumpActivator",
+    "prefab": ""
+  }
+]

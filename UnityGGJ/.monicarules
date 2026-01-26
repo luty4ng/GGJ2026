@@ -1,0 +1,23 @@
+# 项目信息
+# 项目名称: Unity游戏项目
+# 描述: 基于Unity引擎的3D游戏项目
+# 版本: 1.0.0
+# 引擎版本: Unity 2022.3 LTS
+
+# 编码规范
+1. **成员变量**：
+    - 使用`m_`前缀
+    - 后跟驼峰命名法（camelCase）
+    - 例如：`m_canBatchMoveNext`,`m_totalBatchCount`
+2. **方法**：
+    - 使用 Pascal 命名法（PascalCase）
+    - 例如：`Run()`,`ExportTimelineData()`
+3. **参数和局部变量**：
+    - 使用驼峰命名法（camelCase）
+    - 不使用前缀
+    - 例如：`animClip`,`audioClip`,`startTime`
+4. **结构体和类**：
+    - 使用 Pascal 命名法（PascalCase）
+    - 例如：`ExportTask`,`Audio2FaceBatchBaker`
+5. **不使用类型前缀**：
+    - 不在变量名前添加表示类型的字母（如`b`表示布尔值、`i`表示整数等）

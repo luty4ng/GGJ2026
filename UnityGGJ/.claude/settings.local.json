@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Luty/Unity Projects/Cosmos-Game/UnityCosmos**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

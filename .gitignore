@@ -1,0 +1,23 @@
+# This .gitignore file should be placed at the root of your Unity project directory
+#
+# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+#
+
+#Unity Ignore
+UnityCosmos/UserSettings/Layouts/default-2021.dwlt
+UnityCosmos/UserSettings/Search.settings
+
+UnityCosmos/ProjectSettings/CommonBurstAotSettings.json
+UnityCosmos/ProjectSettings/BurstAotSettings_StandaloneWindows.json
+
+
+#Luban
+Tools/Luban/
+Tools/Luban.ClientServer/
+Configs/.cache.meta
+Configs/GameConfig/Datas/~*.xlsx
+GenerateDatas/
+Modules/
+
+#Debug
+UnityCosmos/Assets/_Debug

@@ -1,0 +1,6 @@
+[submodule "UnityCosmos/Packages/com.luty.cosmos-tech"]
+	path = UnityCosmos/Packages/com.luty.cosmos-tech
+	url = https://github.com/luty4ng/com.luty.cosmos-tech.git
+[submodule "UnityCosmos/Packages/com.luty.game-kit"]
+	path = UnityCosmos/Packages/com.luty.game-kit
+	url = https://github.com/luty4ng/com.luty.game-kit.git
