@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
   m_Name: cut
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 0}
+  mSourceClip: {fileID: 8300000, guid: 0e9c0d1341f5c7745b0f46b204475342, type: 3}
   mAudioFilePath: 
-  mSampleRate: -1
+  mSampleRate: 48000
   mIgnoreLatencyOffset: 0
   mTempoSections:
   - sectionName: New Section
     startSample: 0
-    samplesPerBeat: 22050
+    samplesPerBeat: 12000
     beatsPerMeasure: 4
     bStartNewMeasure: 1
-  mTracks: []
+  mTracks:
+  - {fileID: 11400000, guid: dcf74832ce546884580d85a46e347cf6, type: 2}
+  - {fileID: 11400000, guid: 68a2d087cd15ff443a3b0a501b3dd502, type: 2}
+  - {fileID: 11400000, guid: c221c179268ce2642abacc42f7770ead, type: 2}
+  - {fileID: 11400000, guid: 14fa0ac9e2b7d204689b24151c5fe79f, type: 2}
