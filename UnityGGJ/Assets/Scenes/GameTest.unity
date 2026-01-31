@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1004526da77338e4888795106a01bac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WinScore: 3
+  WinScore: 10
   FeverDuration: 5
   FeverHitWindowMS: 1000
   RhythmController: {fileID: 848806498}
@@ -600,8 +600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcb420271777154a86a5e08c3ca6d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: HitTrack
-  spawnEventID: SpawnTrack
+  eventID: Hitv2
+  spawnEventID: Spawnv2
   hitWindowRangeInMS: 500
   npcMoveDistance: 2
   leadInTime: 5
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlayOnAwake: 0
-  koreography: {fileID: 11400000, guid: 0bcf744ea7078c741ab100a21b593aa0, type: 2}
+  koreography: {fileID: 11400000, guid: 0ac78b5ed717fd64393a09aa3c06cd43, type: 2}
   targetKoreographer: {fileID: 1230399533}
 --- !u!1 &1511067934
 GameObject:
