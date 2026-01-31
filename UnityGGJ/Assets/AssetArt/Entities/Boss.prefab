@@ -51,9 +51,9 @@ MonoBehaviour:
   m_cutImage: {fileID: 21300000, guid: b54995c8d2d9d75449b67d84861b2456, type: 3}
   m_normalImage: {fileID: 21300000, guid: b54995c8d2d9d75449b67d84861b2456, type: 3}
   m_happyImages:
-  - {fileID: 21300000, guid: 725e4b01ddb148f4abd3f54b7d321b8c, type: 3}
+  - {fileID: 21300000, guid: b4765f62d4e4f904783257239fa85240, type: 3}
   m_angryImages:
-  - {fileID: 21300000, guid: 8bbcb50b850a0e94190595a54f2e5e0f, type: 3}
+  - {fileID: 21300000, guid: 9300f3b6fa5c1984f91ad39d3a124cb8, type: 3}
 --- !u!1 &1160391351097574471
 GameObject:
   m_ObjectHideFlags: 0
