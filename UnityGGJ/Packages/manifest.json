@@ -4,6 +4,7 @@
     "com.liuocean.luban_gui": "https://github.com/LiuOcean/Luban_Unity_GUI.git?path=Assets/",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.cinemachine": "2.9.7",
+    "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.cursor": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
     "com.unity.ide.rider": "3.0.38",
     "com.unity.ide.visualstudio": "2.0.22",

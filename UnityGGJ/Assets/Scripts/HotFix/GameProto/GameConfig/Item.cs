@@ -17,7 +17,7 @@ public sealed partial class Item : Luban.BeanBase
 {
     public Item(JSONNode _buf) 
     {
-        { if(!_buf["id"].IsNumber) { throw new SerializationException(); }  Id = _buf["id"]; }
+        { if(!_buf["id"].IsString) { throw new SerializationException(); }  Id = _buf["id"]; }
         { if(!_buf["name"].IsString) { throw new SerializationException(); }  Name = _buf["name"]; }
         { if(!_buf["description"].IsString) { throw new SerializationException(); }  Description = _buf["description"]; }
         { if(!_buf["item_type"].IsNumber) { throw new SerializationException(); }  ItemType = (item.EItemType)_buf["item_type"].AsInt; }
@@ -44,7 +44,7 @@ public sealed partial class Item : Luban.BeanBase
     /// <summary>
     /// id
     /// </summary>
-    public readonly int Id;
+    public readonly string Id;
     /// <summary>
     /// 名称
     /// </summary>

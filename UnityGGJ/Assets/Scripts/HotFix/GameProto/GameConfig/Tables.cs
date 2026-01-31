@@ -15,37 +15,16 @@ namespace GameConfig
 public partial class Tables
 {
     public item.TbItem TbItem {get; }
-    public cosmos.TbPlanet TbPlanet {get; }
-    public card.TbCard TbCard {get; }
-    public incident.TbIncident TbIncident {get; }
-    public building.TbBuilding TbBuilding {get; }
-    public recipe.TbRecipe TbRecipe {get; }
-    public ability.TbAbility TbAbility {get; }
-    public cosmos.TbGalaxy TbGalaxy {get; }
 
     public Tables(System.Func<string, JSONNode> loader)
     {
         TbItem = new item.TbItem(loader("item_tbitem"));
-        TbPlanet = new cosmos.TbPlanet(loader("cosmos_tbplanet"));
-        TbCard = new card.TbCard(loader("card_tbcard"));
-        TbIncident = new incident.TbIncident(loader("incident_tbincident"));
-        TbBuilding = new building.TbBuilding(loader("building_tbbuilding"));
-        TbRecipe = new recipe.TbRecipe(loader("recipe_tbrecipe"));
-        TbAbility = new ability.TbAbility(loader("ability_tbability"));
-        TbGalaxy = new cosmos.TbGalaxy(loader("cosmos_tbgalaxy"));
         ResolveRef();
     }
     
     private void ResolveRef()
     {
         TbItem.ResolveRef(this);
-        TbPlanet.ResolveRef(this);
-        TbCard.ResolveRef(this);
-        TbIncident.ResolveRef(this);
-        TbBuilding.ResolveRef(this);
-        TbRecipe.ResolveRef(this);
-        TbAbility.ResolveRef(this);
-        TbGalaxy.ResolveRef(this);
     }
 }
 

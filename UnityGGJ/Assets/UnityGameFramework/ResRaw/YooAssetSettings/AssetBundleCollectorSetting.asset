@@ -157,14 +157,6 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-      - CollectPath: Assets/AssetRaw/UIRaw/Icons
-        CollectorGUID: 9492687fdaeeece4696c8a2af6be6ffa
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
       - CollectPath: Assets/AssetRaw/UIRaw/Presets
         CollectorGUID: 2cb902c620b68af4f827467719447345
         CollectorType: 0

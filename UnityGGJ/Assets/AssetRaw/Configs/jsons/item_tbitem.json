@@ -1,6 +1,6 @@
 [
   {
-    "id": 10001,
+    "id": "10001",
     "name": "金属",
     "description": "基础金属原料",
     "item_type": 1,
@@ -23,7 +23,7 @@
     "prefab": ""
   },
   {
-    "id": 10002,
+    "id": "10002",
     "name": "矿物",
     "description": "岩矿/晶体等无机固体原料",
     "item_type": 1,
@@ -46,7 +46,7 @@
     "prefab": ""
   },
   {
-    "id": 10003,
+    "id": "10003",
     "name": "化合物",
     "description": "工业化学原料",
     "item_type": 1,
@@ -69,7 +69,7 @@
     "prefab": ""
   },
   {
-    "id": 10004,
+    "id": "10004",
     "name": "有机物",
     "description": "生物质/有机组织",
     "item_type": 1,
@@ -92,7 +92,7 @@
     "prefab": ""
   },
   {
-    "id": 10005,
+    "id": "10005",
     "name": "气体",
     "description": "常规气态资源",
     "item_type": 1,
@@ -115,7 +115,7 @@
     "prefab": ""
   },
   {
-    "id": 10006,
+    "id": "10006",
     "name": "液体",
     "description": "常规液态资源",
     "item_type": 1,
@@ -138,7 +138,7 @@
     "prefab": ""
   },
   {
-    "id": 10007,
+    "id": "10007",
     "name": "星振粒子",
     "description": "规则层物质，用于设施",
     "item_type": 1,
@@ -161,7 +161,7 @@
     "prefab": ""
   },
   {
-    "id": 10008,
+    "id": "10008",
     "name": "等离子体",
     "description": "电离态物质，用于设施",
     "item_type": 1,
@@ -184,7 +184,7 @@
     "prefab": ""
   },
   {
-    "id": 10009,
+    "id": "10009",
     "name": "量子体",
     "description": "量子相态物质，用于设施",
     "item_type": 1,
@@ -207,7 +207,7 @@
     "prefab": ""
   },
   {
-    "id": 20001,
+    "id": "20001",
     "name": "合金",
     "description": "强结构材料",
     "item_type": 2,
@@ -230,7 +230,7 @@
     "prefab": ""
   },
   {
-    "id": 20002,
+    "id": "20002",
     "name": "复合材料",
     "description": "轻质/抗冲击材料",
     "item_type": 2,
@@ -253,7 +253,7 @@
     "prefab": ""
   },
   {
-    "id": 20003,
+    "id": "20003",
     "name": "精炼燃料",
     "description": "高反应性燃料",
     "item_type": 2,
@@ -276,7 +276,7 @@
     "prefab": ""
   },
   {
-    "id": 20004,
+    "id": "20004",
     "name": "工业溶剂",
     "description": "反应介质/腐蚀渗透",
     "item_type": 2,
@@ -299,7 +299,7 @@
     "prefab": ""
   },
   {
-    "id": 20005,
+    "id": "20005",
     "name": "生物制剂",
     "description": "活性生物物质",
     "item_type": 2,
@@ -322,7 +322,7 @@
     "prefab": ""
   },
   {
-    "id": 20006,
+    "id": "20006",
     "name": "合成聚合物",
     "description": "人工高分子",
     "item_type": 2,
@@ -345,7 +345,7 @@
     "prefab": ""
   },
   {
-    "id": 20007,
+    "id": "20007",
     "name": "高密度流体",
     "description": "工程流体",
     "item_type": 2,
@@ -368,7 +368,7 @@
     "prefab": ""
   },
   {
-    "id": 20008,
+    "id": "20008",
     "name": "功能凝胶",
     "description": "半固态凝胶",
     "item_type": 2,
@@ -391,7 +391,7 @@
     "prefab": ""
   },
   {
-    "id": 20009,
+    "id": "20009",
     "name": "吸能涂层",
     "description": "吸收冲击/辐射的涂层",
     "item_type": 2,
@@ -414,7 +414,7 @@
     "prefab": ""
   },
   {
-    "id": 20010,
+    "id": "20010",
     "name": "界面膜材",
     "description": "选择性渗透/隔离材料",
     "item_type": 2,
@@ -437,7 +437,7 @@
     "prefab": ""
   },
   {
-    "id": 40001,
+    "id": "40001",
     "name": "建筑部署器",
     "description": "建筑部署器",
     "item_type": 4,
