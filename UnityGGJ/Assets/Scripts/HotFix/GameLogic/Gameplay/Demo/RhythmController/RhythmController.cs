@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
 using SonicBloom.Koreo;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -134,8 +135,24 @@ namespace GameLogic
             Initialize();
         }
 
+        private bool _isPause = false;
+        void OnEnable()
+        {
+            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        void OnDisable()
+        {
+            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        private void OnGamePause(bool isPause)
+        {
+            _isPause = isPause;
+        }
+
         private void Update()
         {
+            if (_isPause)
+                return;
             UpdateInternalValues();
             HandleLeadIn();
             HandleSpeedToggle();

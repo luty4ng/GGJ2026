@@ -191,32 +191,6 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: Models
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors:
-      - CollectPath: Assets/AssetArt/Models
-        CollectorGUID: e98551a42afa87e4d98fc0b5bad75a90
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
-    - GroupName: Settings
-      GroupDesc: 
-      AssetTags: PRELOAD
-      ActiveRuleName: EnableGroup
-      Collectors:
-      - CollectPath: Assets/AssetArt/Settings
-        CollectorGUID: f6f831d581aa9ea419d4de448067dc00
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
   - PackageName: OtherPackage
     PackageDesc: 
     EnableAddressable: 1

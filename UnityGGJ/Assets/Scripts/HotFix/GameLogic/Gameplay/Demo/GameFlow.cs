@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -67,8 +68,27 @@ namespace GameLogic
             StartGame();
         }
 
+        private bool m_isPauseOn = false;
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (m_isPauseOn)
+                {
+                    GameModule.UI.CloseUI<UISimplePauseWindow>();
+                    // GameEvent.Send<bool>(GameplayEventId.OnGamePause, true);
+                    RhythmController.audioCom.Play();
+                }
+                else
+                {
+                    GameModule.UI.ShowUIAsync<UISimplePauseWindow>(this);
+                    // GameEvent.Send<bool>(GameplayEventId.OnGamePause, false);
+                    RhythmController.audioCom.Pause();
+                }
+                m_isPauseOn = !m_isPauseOn;
+            }
+
+            // if (!m_isPauseOn)
             UpdateFeverTime();
         }
 

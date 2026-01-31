@@ -25,9 +25,24 @@ namespace GameLogic
 
         // 是否处于Fever Time状态
         private bool _isFeverTime = false;
-
+        private bool _isPause = false;
+        void OnEnable()
+        {
+            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        void OnDisable()
+        {
+            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        private void OnGamePause(bool isPause)
+        {
+            _isPause = isPause;
+        }
+        
         private void Update()
         {
+            if (_isPause)
+                return;
             HandleInput();
         }
 

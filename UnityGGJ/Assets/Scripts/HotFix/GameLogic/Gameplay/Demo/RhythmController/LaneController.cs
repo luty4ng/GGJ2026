@@ -4,6 +4,7 @@ using System.Linq;
 using SonicBloom.Koreo;
 using System;
 using Sirenix.OdinInspector;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -118,9 +119,26 @@ namespace GameLogic
 
         #region Unity Lifecycle
 
+        private bool _isPause = false;
+        void OnEnable()
+        {
+            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        void OnDisable()
+        {
+            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        private void OnGamePause(bool isPause)
+        {
+            _isPause = isPause;
+        }
+
         private void Update()
         {
-            if (_controller == null) return;
+            if (_isPause)
+                return;
+            if (_controller == null)
+                return;
 
             // 清理已错过的NPC
             CleanupMissedNpcs();
@@ -185,6 +203,7 @@ namespace GameLogic
                     npc.OnEventTriggeredMove(evt);
                 }
             }
+            GameEvent.Send(GameplayEventId.OnBeat);
         }
 
         /// <summary>

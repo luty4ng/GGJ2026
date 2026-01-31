@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using SonicBloom.Koreo;
 using UnityGameFramework.Runtime;
+using DG.Tweening;
 
 namespace GameLogic
 {
@@ -101,6 +102,31 @@ namespace GameLogic
 
         private bool _isActive = true;
 
+        /// <summary>
+        /// FeverTime下是否已开始飞出动画
+        /// </summary>
+        private bool _isFeverFlyingOut = false;
+
+        /// <summary>
+        /// FeverTime飞出动画持续时间
+        /// </summary>
+        private const float FEVER_FLY_DURATION = 1.5f;
+
+        /// <summary>
+        /// FeverTime飞出距离
+        /// </summary>
+        private const float FEVER_FLY_DISTANCE = 15f;
+
+        /// <summary>
+        /// FeverTime飞出后销毁延迟时间
+        /// </summary>
+        private const float FEVER_DESTROY_DELAY = 5f;
+
+        /// <summary>
+        /// FeverTime旋转角度
+        /// </summary>
+        private const float FEVER_ROTATION_AMOUNT = 720f;
+
         #endregion
 
         #region Initialization
@@ -171,9 +197,23 @@ namespace GameLogic
         #endregion
 
         #region Beat Handling
-
+        private bool _isPause = false;
+        void OnEnable()
+        {
+            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        void OnDisable()
+        {
+            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+        }
+        private void OnGamePause(bool isPause)
+        {
+            _isPause = isPause;
+        }
         private void Update()
         {
+            if (_isPause)
+                return;
             // 仍在倒数第二格且尚未被判定：窗口已过，按错或错失 → 在进入最后一格前切换生气图
             if (MoveCount == TotalMoveCount - 1 && !IsInsideHitWindow(out float offset))
             {
@@ -197,9 +237,6 @@ namespace GameLogic
         public void OnEventTriggeredMove(KoreographyEvent evt)
         {
             if (!_isActive || IsFinished) return;
-
-            GameEvent.Send(GameplayEventId.OnBeat);
-
             MoveCount++;
             LastMoveEvent = evt;
             PerformMove();
@@ -264,6 +301,12 @@ namespace GameLogic
             JudgeSuccess = true;
             ApplyRandomHappyImage();
             Debug.Log($"[NPC] 命中成功！MoveCount: {MoveCount}");
+
+            // FeverTime下在倒数第二个点击中，触发向上飞出
+            if (_rhythmController != null && _rhythmController.IsFeverTime && IsInJudgePhase)
+            {
+                StartFeverFlyOutUp();
+            }
         }
 
         /// <summary>
@@ -304,6 +347,59 @@ namespace GameLogic
 
             // 延迟销毁，给视觉反馈留时间
             Destroy(gameObject, 0.5f);
+        }
+
+        #endregion
+
+        #region FeverTime Fly Out Animation
+
+        /// <summary>
+        /// FeverTime向上45度角飞出（击中节拍时）
+        /// </summary>
+        private void StartFeverFlyOutUp()
+        {
+            if (_isFeverFlyingOut) return;
+            _isFeverFlyingOut = true;
+            _isActive = false;
+
+            // 计算偏移方向：根据NPC当前X位置相对于屏幕中心判断
+            float screenCenterX = Camera.main != null ? Camera.main.transform.position.x : 0f;
+            float offsetX = transform.position.x - screenCenterX;
+            bool isRight = offsetX >= 0;
+
+            // 向上45度角飞出方向
+            // 偏右：向右上方飞出（45度）
+            // 偏左：向左上方飞出（-45度，即135度方向）
+            float angle = isRight ? 45f : 135f;
+            Vector3 flyDirection = new Vector3(
+                Mathf.Cos(angle * Mathf.Deg2Rad),
+                Mathf.Sin(angle * Mathf.Deg2Rad),
+                0f
+            ).normalized;
+
+            Vector3 targetPosition = transform.position + flyDirection * FEVER_FLY_DISTANCE;
+
+            // 旋转方向：偏右顺时针（负方向），偏左逆时针（正方向）
+            float rotationEndValue = isRight ? -FEVER_ROTATION_AMOUNT : FEVER_ROTATION_AMOUNT;
+
+            // 使用DOTween执行动画
+            Sequence flySequence = DOTween.Sequence();
+            flySequence.Append(transform.DOMove(targetPosition, FEVER_FLY_DURATION).SetEase(Ease.OutQuad));
+            flySequence.Join(transform.DORotate(new Vector3(0, 0, rotationEndValue), FEVER_FLY_DURATION, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+            flySequence.OnComplete(() => OnFeverFlyOutComplete());
+
+            Debug.Log($"[NPC] FeverTime 击中 - 向{(isRight ? "右上" : "左上")}45度飞出，{(isRight ? "顺时针" : "逆时针")}旋转");
+        }
+
+        /// <summary>
+        /// FeverTime飞出动画完成后的处理
+        /// </summary>
+        private void OnFeverFlyOutComplete()
+        {
+            OnNpcFinished?.Invoke(this, JudgeSuccess);
+
+            // 飞出后5秒销毁
+            Destroy(gameObject, FEVER_DESTROY_DELAY);
         }
 
         #endregion
