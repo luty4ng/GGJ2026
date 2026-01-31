@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca46ef38b206f174da804447cfef3575, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 668fc6a948b613a4ea9e634f2b48ffe0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,3 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f979caf9d9d7b4fbb279240215cf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lanes: []
+  bossKey: 49
+  colleagueKey: 50
+  crushKey: 51

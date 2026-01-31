@@ -28,6 +28,17 @@ namespace GameLogic
         [SerializeField]
         private NpcType _npcType = NpcType.Boss;
 
+        [SerializeField]
+        private SpriteRenderer m_spriteRenderer;
+        [SerializeField]
+        private Sprite m_cutImage;
+        [SerializeField]
+        private Sprite m_normalImage;
+        [SerializeField]
+        private List<Sprite> m_happyImages;
+        [SerializeField]
+        private List<Sprite> m_angryImages;
+
         /// <summary>
         /// 获取NPC类型
         /// </summary>
@@ -127,7 +138,7 @@ namespace GameLogic
             if (MoveCount == TotalMoveCount)
             {
                 JudgeEvent = evt;
-                
+
                 // TODO: 临时方法 - 根据判定结果改变颜色
                 ApplyResultColor();
             }
