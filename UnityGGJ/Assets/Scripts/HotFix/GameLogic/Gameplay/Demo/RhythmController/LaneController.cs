@@ -323,6 +323,34 @@ namespace GameLogic
             }
         }
 
+        /// <summary>
+        /// 尝试命中任意可命中的NPC（Fever Time下使用，无视类型）
+        /// </summary>
+        /// <returns>是否成功命中</returns>
+        public bool TryHitAnyNpc()
+        {
+            Debug.Log($"[Lane] TryHitAnyNpc called (Fever Time), activeNpcs: {_activeNpcs.Count}");
+
+            // 查找第一个可命中的NPC，无视类型
+            float hitOffset = 0;
+            for (int i = 0; i < _activeNpcs.Count; i++)
+            {
+                var npc = _activeNpcs[i];
+                if (npc == null) continue;
+
+                bool isHittable = IsNpcHittable(npc, out hitOffset);
+                if (isHittable)
+                {
+                    npc.OnHit();
+                    Debug.Log($"[Lane] Fever命中成功, Type: {npc.NpcType}, Offset: {hitOffset}");
+                    OnHitSuccess?.Invoke(npc);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Hit Detection
@@ -341,11 +369,13 @@ namespace GameLogic
             // 检查最后一次移动事件的时间窗口
             if (npc.LastMoveEvent == null) return false;
 
-            int noteTime = npc.LastMoveEvent.StartSample;
-            int curTime = _controller.DelayedSampleTime;
-            int hitWindow = _controller.HitWindowSampleWidth;
-            offset = noteTime - curTime;
-            return Mathf.Abs(noteTime - curTime) <= hitWindow;
+            // int noteTime = npc.LastMoveEvent.StartSample;
+            // int curTime = _controller.DelayedSampleTime;
+            // int hitWindow = _controller.HitWindowSampleWidth;
+            // offset = noteTime - curTime;
+            // return Mathf.Abs(noteTime - curTime) <= hitWindow;
+
+            return npc.IsInsideHitWindow(out offset);
         }
 
         #endregion

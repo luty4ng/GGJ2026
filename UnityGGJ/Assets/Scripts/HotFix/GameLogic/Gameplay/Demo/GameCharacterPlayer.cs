@@ -23,6 +23,9 @@ namespace GameLogic
         [Tooltip("Crush对应按键")]
         public KeyCode crushKey = KeyCode.Alpha3;
 
+        // 是否处于Fever Time状态
+        private bool _isFeverTime = false;
+
         private void Update()
         {
             HandleInput();
@@ -33,18 +36,76 @@ namespace GameLogic
         /// </summary>
         private void HandleInput()
         {
-            if (Input.GetKeyDown(bossKey))
+            if (_isFeverTime)
             {
-                TryHitWithType(NpcType.Boss);
+                // Fever Time 下任意键触发 hit
+                if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1) && !Input.GetMouseButtonDown(2))
+                {
+                    TryHitAnyNpc();
+                }
             }
-            else if (Input.GetKeyDown(colleagueKey))
+            else
             {
-                TryHitWithType(NpcType.Colleague);
+                // 正常模式：按对应键位击打对应类型
+                if (Input.GetKeyDown(bossKey))
+                {
+                    TryHitWithType(NpcType.Boss);
+                }
+                else if (Input.GetKeyDown(colleagueKey))
+                {
+                    TryHitWithType(NpcType.Colleague);
+                }
+                else if (Input.GetKeyDown(crushKey))
+                {
+                    TryHitWithType(NpcType.Crush);
+                }
             }
-            else if (Input.GetKeyDown(crushKey))
+        }
+
+        /// <summary>
+        /// Fever Time下尝试命中任意可命中的NPC（无视类型）
+        /// </summary>
+        private void TryHitAnyNpc()
+        {
+            Debug.Log($"[Player] TryHitAnyNpc (Fever Time), lanes count: {lanes.Count}");
+
+            if (lanes.Count == 0)
             {
-                TryHitWithType(NpcType.Crush);
+                Debug.LogWarning("[Player] lanes 列表为空！请在 Inspector 中设置 LaneController 引用");
+                OnHitEmpty();
+                return;
             }
+
+            bool hitAny = false;
+
+            // 遍历所有轨道尝试命中任意NPC
+            foreach (var lane in lanes)
+            {
+                if (lane != null && lane.TryHitAnyNpc())
+                {
+                    hitAny = true;
+                    break; // 一次只命中一个
+                }
+            }
+
+            if (hitAny)
+            {
+                OnHitSuccess();
+            }
+            else
+            {
+                OnHitEmpty();
+            }
+        }
+
+        /// <summary>
+        /// 设置Fever Time状态
+        /// </summary>
+        /// <param name="isFever">是否处于Fever Time</param>
+        public void SetFeverTime(bool isFever)
+        {
+            _isFeverTime = isFever;
+            Debug.Log($"[Player] Fever Time: {isFever}");
         }
 
         /// <summary>

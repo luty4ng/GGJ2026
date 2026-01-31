@@ -172,6 +172,24 @@ namespace GameLogic
 
         #region Beat Handling
 
+        private void Update()
+        {
+            // 仍在倒数第二格且尚未被判定：窗口已过，按错或错失 → 在进入最后一格前切换生气图
+            if (MoveCount == TotalMoveCount - 1 && !IsInsideHitWindow(out float offset))
+            {
+                ApplyResultImage();
+            }
+        }
+
+        public bool IsInsideHitWindow(out float offset)
+        {
+            int noteTime = LastMoveEvent.StartSample;
+            int curTime = _rhythmController.DelayedSampleTime;
+            int hitWindow = _rhythmController.HitWindowSampleWidth;
+            offset = noteTime - curTime;
+            return Mathf.Abs(noteTime - curTime) <= hitWindow;
+        }
+
         /// <summary>
         /// 由外部事件触发的移动
         /// </summary>
@@ -181,11 +199,6 @@ namespace GameLogic
             if (!_isActive || IsFinished) return;
 
             GameEvent.Send(GameplayEventId.OnBeat);
-            // 仍在倒数第二格且尚未被判定：窗口已过，按错或错失 → 在进入最后一格前切换生气图
-            if (MoveCount == TotalMoveCount - 1 && !HasBeenJudged)
-            {
-                ApplyResultImage();
-            }
 
             MoveCount++;
             LastMoveEvent = evt;

@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 3906744821045155914}
   - component: {fileID: 9072283686829678189}
   - component: {fileID: 4426335882439897831}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4095
+    m_Bits: 127
 --- !u!1 &7314497028290833850
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4735614009072171425}
   - component: {fileID: 2588210108027933595}
   - component: {fileID: 6778358824055433789}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HintText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6933598661707373207}
   - component: {fileID: 8745618937238910472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 3906744821045155914}
   - component: {fileID: 9072283686829678189}
   - component: {fileID: 4426335882439897831}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4735614009072171425}
   - component: {fileID: 2588210108027933595}
   - component: {fileID: 6778358824055433789}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HintText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 2154411792326980428}
   - component: {fileID: 4772402577200723098}
   - component: {fileID: 1758534581800847110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TrueView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

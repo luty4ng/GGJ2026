@@ -38,7 +38,7 @@ namespace GameLogic
                 // await GameFlow.Instance.StartGameRunNew();
             }
 #endif 
-            // GameModule.UI.ShowUIAsync<UIStartGameWindow>(GameFlow.Instance);
+            GameModule.UI.ShowUIAsync<UISimpleStartGameWindow>();
             m_InitGameplayComplete = true;
         }
 
