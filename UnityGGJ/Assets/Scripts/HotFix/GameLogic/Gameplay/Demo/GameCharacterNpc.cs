@@ -156,6 +156,7 @@ namespace GameLogic
             if (m_spriteRenderer != null && m_cutImage != null)
             {
                 m_spriteRenderer.sprite = m_cutImage;
+                m_spriteRenderer.color = Color.black;
             }
         }
 
@@ -167,6 +168,7 @@ namespace GameLogic
             if (m_spriteRenderer != null && m_normalImage != null)
             {
                 m_spriteRenderer.sprite = m_normalImage;
+                m_spriteRenderer.color = Color.white;
             }
         }
 
@@ -179,6 +181,7 @@ namespace GameLogic
             {
                 int randomIndex = UnityEngine.Random.Range(0, m_happyImages.Count);
                 m_spriteRenderer.sprite = m_happyImages[randomIndex];
+                m_spriteRenderer.color = Color.white;
             }
         }
 
@@ -191,6 +194,7 @@ namespace GameLogic
             {
                 int randomIndex = UnityEngine.Random.Range(0, m_angryImages.Count);
                 m_spriteRenderer.sprite = m_angryImages[randomIndex];
+                m_spriteRenderer.color = Color.white;
             }
         }
 

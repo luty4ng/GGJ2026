@@ -130,11 +130,6 @@ public class GameModule : MonoBehaviour
     private static UISystem _ui;
     public static UISystem UI => _ui ??= Get<UISystem>();
 
-    /// <summary>
-    /// 获取世界空间UI组件
-    /// </summary>
-    private static WorldspaceUIManager _worldspaceUIManager;
-    public static WorldspaceUIManager WorldspaceUI => _worldspaceUIManager ??= Get<WorldspaceUIManager>();
     #endregion
 
     /// <summary>
