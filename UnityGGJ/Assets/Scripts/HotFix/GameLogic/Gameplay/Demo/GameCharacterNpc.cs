@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using SonicBloom.Koreo;
 
 namespace GameLogic
@@ -31,11 +32,10 @@ namespace GameLogic
         /// 获取NPC类型
         /// </summary>
         public NpcType NpcType => _npcType;
-
         /// <summary>
-        /// 每次移动的距离（米）
+        /// 移动目标位置节点列表
         /// </summary>
-        public float MoveDistance = 2f;
+        private List<Transform> _movePositions;
 
         /// <summary>
         /// 最后一次移动对应的事件（用于判定）
@@ -98,12 +98,13 @@ namespace GameLogic
         /// </summary>
         /// <param name="controller">节奏控制器</param>
         /// <param name="totalMoves">需要移动的总次数</param>
-        public void InitializeWithKoreographer(RhythmController controller, int totalMoves = 4)
+        /// <param name="movePositions">移动目标位置节点列表</param>
+        public void InitializeWithKoreographer(RhythmController controller, int totalMoves = 4, List<Transform> movePositions = null)
         {
             _rhythmController = controller;
-            MoveDistance = controller.NpcMoveDistance;
             TotalMoveCount = totalMoves;
             MoveCount = 0;
+            _movePositions = movePositions;
         }
 
         #endregion
@@ -122,17 +123,9 @@ namespace GameLogic
             LastMoveEvent = evt;
             PerformMove();
 
-            // 倒数第二个窗口：向下移动
-            if (MoveCount == TotalMoveCount - 1)
+            // 最后一个窗口：显示结果颜色
+            if (MoveCount == TotalMoveCount)
             {
-                transform.position += Vector3.down * MoveDistance;
-            }
-            // 最后一个窗口：恢复位置并显示结果颜色
-            else if (MoveCount == TotalMoveCount)
-            {
-                // 恢复Y位置
-                transform.position += Vector3.up * MoveDistance;
-                
                 JudgeEvent = evt;
                 
                 // TODO: 临时方法 - 根据判定结果改变颜色
@@ -147,11 +140,29 @@ namespace GameLogic
         }
 
         /// <summary>
-        /// 执行移动
+        /// 执行移动 - 移动到对应的位置节点
         /// </summary>
         private void PerformMove()
         {
-            transform.position += Vector3.left * MoveDistance;
+            // 使用位置节点移动
+            if (_movePositions != null && _movePositions.Count > 0)
+            {
+                // MoveCount 从1开始，所以索引是 MoveCount - 1
+                int targetIndex = MoveCount - 1;
+                if (targetIndex >= 0 && targetIndex < _movePositions.Count && _movePositions[targetIndex] != null)
+                {
+                    transform.position = _movePositions[targetIndex].position;
+                }
+                else
+                {
+                    // 如果节点不够，使用最后一个节点
+                    var lastNode = _movePositions[_movePositions.Count - 1];
+                    if (lastNode != null)
+                    {
+                        transform.position = lastNode.position;
+                    }
+                }
+            }
         }
 
         #endregion

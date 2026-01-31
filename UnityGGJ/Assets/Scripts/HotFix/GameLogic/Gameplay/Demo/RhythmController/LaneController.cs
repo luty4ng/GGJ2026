@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SonicBloom.Koreo;
 using System;
+using Sirenix.OdinInspector;
 
 namespace GameLogic
 {
@@ -30,6 +31,10 @@ namespace GameLogic
 
         [Tooltip("每个NPC需要移动的次数（每次移动对应一个事件）")]
         public int movesPerNpc = 4;
+
+        [Header("位置节点")]
+        [Tooltip("NPC移动的目标位置节点列表")]
+        public List<Transform> movePositions = new List<Transform>();
 
         // 分配给此轨道的移动事件
         private List<KoreographyEvent> _moveEvents = new List<KoreographyEvent>();
@@ -245,8 +250,8 @@ namespace GameLogic
                 npc = npcObj.AddComponent<GameCharacterNpc>();
             }
 
-            // 初始化NPC（事件驱动模式）
-            npc.InitializeWithKoreographer(_controller, movesPerNpc);
+            // 初始化NPC（事件驱动模式），传入位置节点
+            npc.InitializeWithKoreographer(_controller, movesPerNpc, movePositions);
 
             _activeNpcs.Add(npc);
             return npc;
@@ -365,6 +370,126 @@ namespace GameLogic
                 }
             }
             _activeNpcs.Clear();
+        }
+
+        #endregion
+
+        #region Position Nodes
+
+        /// <summary>
+        /// 在编辑器中生成位置节点
+        /// </summary>
+        [Button("生成位置节点")]
+        public void GenerateMovePositions()
+        {
+            // 清除旧节点
+            ClearMovePositions();
+
+            movePositions.Clear();
+
+            Vector3 startPos = spawnPoint != null ? spawnPoint.position : transform.position;
+
+            for (int i = 0; i < movesPerNpc; i++)
+            {
+                GameObject nodeObj = new GameObject($"MovePos_{i}");
+                nodeObj.transform.SetParent(transform);
+                // 默认沿X轴负方向排列，每个节点间隔2米
+                nodeObj.transform.position = startPos + Vector3.left * (i + 1) * 2f;
+                movePositions.Add(nodeObj.transform);
+            }
+
+            Debug.Log($"[LaneController] 生成了 {movesPerNpc} 个位置节点");
+        }
+
+        /// <summary>
+        /// 清除所有位置节点
+        /// </summary>
+        [Button("清除位置节点")]
+        public void ClearMovePositions()
+        {
+            // 在编辑器模式下使用DestroyImmediate
+            for (int i = movePositions.Count - 1; i >= 0; i--)
+            {
+                if (movePositions[i] != null)
+                {
+#if UNITY_EDITOR
+                    if (!Application.isPlaying)
+                        DestroyImmediate(movePositions[i].gameObject);
+                    else
+#endif
+                        Destroy(movePositions[i].gameObject);
+                }
+            }
+            movePositions.Clear();
+        }
+
+        #endregion
+
+        #region Gizmos
+
+        private void OnDrawGizmos()
+        {
+            if (movePositions == null || movePositions.Count == 0) return;
+
+            // 绘制起点
+            Vector3 startPos = spawnPoint != null ? spawnPoint.position : transform.position;
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(startPos, 0.3f);
+
+            // 绘制从起点到第一个节点的线
+            if (movePositions.Count > 0 && movePositions[0] != null)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(startPos, movePositions[0].position);
+            }
+
+            // 绘制节点和连线
+            for (int i = 0; i < movePositions.Count; i++)
+            {
+                if (movePositions[i] == null) continue;
+
+                // 根据节点索引设置颜色
+                if (i == movePositions.Count - 2)
+                {
+                    // 倒数第二个节点（判定位置）用蓝色
+                    Gizmos.color = Color.blue;
+                }
+                else if (i == movePositions.Count - 1)
+                {
+                    // 最后一个节点用红色
+                    Gizmos.color = Color.red;
+                }
+                else
+                {
+                    // 其他节点用黄色
+                    Gizmos.color = Color.yellow;
+                }
+
+                // 绘制节点球体
+                Gizmos.DrawWireSphere(movePositions[i].position, 0.25f);
+
+                // 绘制节点间的连线
+                if (i < movePositions.Count - 1 && movePositions[i + 1] != null)
+                {
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawLine(movePositions[i].position, movePositions[i + 1].position);
+                }
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // 选中时用更明显的方式绘制
+            if (movePositions == null || movePositions.Count == 0) return;
+
+            for (int i = 0; i < movePositions.Count; i++)
+            {
+                if (movePositions[i] == null) continue;
+
+                // 绘制索引标签位置的小标记
+                Gizmos.color = Color.white;
+                Gizmos.DrawSphere(movePositions[i].position, 0.1f);
+            }
         }
 
         #endregion

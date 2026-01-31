@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6386105720382082024}
   - component: {fileID: 8745618937238910472}
   m_Layer: 0
-  m_Name: CustomerB
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de71060ae111f3444962f7c9ca1db7b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98c2954aeef16da43a5acdda694615b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa116a37a836c24d90a814bf9101d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcType: 2
-  MoveDistance: 2
+  _npcType: 1
