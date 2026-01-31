@@ -230,10 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinScore: 10
+  FeverDuration: 5
+  FeverHitWindowMS: 1000
   RhythmController: {fileID: 848806498}
   Player: {fileID: 1693314089816779966}
   _currentScore: 0
   _isGameRunning: 0
+  _isFeverTime: 0
+  _feverTimeRemaining: 0
 --- !u!1 &679117800
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchedPayloads:
   - Hit
+  - Spawn
   inputKey: 32
   npcPrefabs:
   - {fileID: 570887791683999267, guid: d9c2e4e9d5465f348895d4225a8b36a4, type: 3}
