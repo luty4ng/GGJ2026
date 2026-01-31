@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using SonicBloom.Koreo;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -116,6 +117,55 @@ namespace GameLogic
             TotalMoveCount = totalMoves;
             MoveCount = 0;
             _movePositions = movePositions;
+
+            // 初始化时使用剪影图
+            ApplySilhouetteImage();
+        }
+
+        /// <summary>
+        /// 应用剪影图
+        /// </summary>
+        private void ApplySilhouetteImage()
+        {
+            if (m_spriteRenderer != null && m_cutImage != null)
+            {
+                m_spriteRenderer.sprite = m_cutImage;
+            }
+        }
+
+        /// <summary>
+        /// 应用正常图
+        /// </summary>
+        private void ApplyNormalImage()
+        {
+            if (m_spriteRenderer != null && m_normalImage != null)
+            {
+                m_spriteRenderer.sprite = m_normalImage;
+            }
+        }
+
+        /// <summary>
+        /// 应用随机开心图
+        /// </summary>
+        private void ApplyRandomHappyImage()
+        {
+            if (m_spriteRenderer != null && m_happyImages != null && m_happyImages.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, m_happyImages.Count);
+                m_spriteRenderer.sprite = m_happyImages[randomIndex];
+            }
+        }
+
+        /// <summary>
+        /// 应用随机生气图
+        /// </summary>
+        private void ApplyRandomAngryImage()
+        {
+            if (m_spriteRenderer != null && m_angryImages != null && m_angryImages.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, m_angryImages.Count);
+                m_spriteRenderer.sprite = m_angryImages[randomIndex];
+            }
         }
 
         #endregion
@@ -130,17 +180,28 @@ namespace GameLogic
         {
             if (!_isActive || IsFinished) return;
 
+            GameEvent.Send(GameplayEventId.OnBeat);
+            // 仍在倒数第二格且尚未被判定：窗口已过，按错或错失 → 在进入最后一格前切换生气图
+            if (MoveCount == TotalMoveCount - 1 && !HasBeenJudged)
+            {
+                ApplyResultImage();
+            }
+
             MoveCount++;
             LastMoveEvent = evt;
             PerformMove();
 
-            // 最后一个窗口：显示结果颜色
+            // 到达倒数第二格时切换为正常图
+            if (MoveCount == TotalMoveCount - 1)
+            {
+                ApplyNormalImage();
+            }
+
+            // 最后一格：换回剪影图
             if (MoveCount == TotalMoveCount)
             {
                 JudgeEvent = evt;
-
-                // TODO: 临时方法 - 根据判定结果改变颜色
-                ApplyResultColor();
+                ApplySilhouetteImage();
             }
 
             // 如果已经移动完所有次数，准备销毁
@@ -182,13 +243,26 @@ namespace GameLogic
 
         /// <summary>
         /// 命中成功（由LaneController调用）
-        /// 命中后不会删除NPC，等到最后一个窗口时根据结果显示颜色
+        /// 按对后切换随机一张开心图
         /// </summary>
         public void OnHit()
         {
             HasBeenJudged = true;
             JudgeSuccess = true;
+            ApplyRandomHappyImage();
             Debug.Log($"[NPC] 命中成功！MoveCount: {MoveCount}");
+        }
+
+        /// <summary>
+        /// 按错键（由LaneController调用）
+        /// 切换随机一张生气图
+        /// </summary>
+        public void OnHitMiss()
+        {
+            HasBeenJudged = true;
+            JudgeSuccess = false;
+            ApplyRandomAngryImage();
+            Debug.Log("[NPC] 按错键 - 生气图");
         }
 
         /// <summary>
@@ -224,26 +298,15 @@ namespace GameLogic
         #region Visual Feedback
 
         /// <summary>
-        /// TODO: 临时方法 - 根据判定结果改变颜色
-        /// 命中成功显示绿色，失败显示红色
+        /// 倒数第二个窗口结果：玩家未按对或错失窗口时切换随机生气图（按对已在 OnHit 中切到开心图）
         /// </summary>
-        private void ApplyResultColor()
+        private void ApplyResultImage()
         {
-            var renderer = GetComponentInChildren<Renderer>();
-            if (renderer != null)
+            if (!JudgeSuccess)
             {
-                // 创建新材质实例避免影响其他对象
-                Material mat = renderer.material;
-                if (JudgeSuccess)
-                {
-                    mat.color = Color.green;
-                    Debug.Log("[NPC] 判定成功 - 绿色");
-                }
-                else
-                {
-                    mat.color = Color.red;
-                    Debug.Log("[NPC] 判定失败 - 红色");
-                }
+                HasBeenJudged = true;
+                ApplyRandomAngryImage();
+                Debug.Log("[NPC] 判定失败（超时或按错）- 生气图");
             }
         }
 

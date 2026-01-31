@@ -68,6 +68,60 @@ MonoBehaviour:
     mEndSample: 982800
   - mStartSample: 1020600
     mEndSample: 1020600
+  - mStartSample: 1058400
+    mEndSample: 1058400
+  - mStartSample: 1096146
+    mEndSample: 1096146
+  - mStartSample: 1133893
+    mEndSample: 1133893
+  - mStartSample: 1171639
+    mEndSample: 1171639
+  - mStartSample: 1209386
+    mEndSample: 1209386
+  - mStartSample: 1247132
+    mEndSample: 1247132
+  - mStartSample: 1284878
+    mEndSample: 1284878
+  - mStartSample: 1322625
+    mEndSample: 1322625
+  - mStartSample: 1360371
+    mEndSample: 1360371
+  - mStartSample: 1398118
+    mEndSample: 1398118
+  - mStartSample: 1435864
+    mEndSample: 1435864
+  - mStartSample: 1473610
+    mEndSample: 1473610
+  - mStartSample: 1511357
+    mEndSample: 1511357
+  - mStartSample: 1549103
+    mEndSample: 1549103
+  - mStartSample: 1586850
+    mEndSample: 1586850
+  - mStartSample: 1624596
+    mEndSample: 1624596
+  - mStartSample: 1662342
+    mEndSample: 1662342
+  - mStartSample: 1700089
+    mEndSample: 1700089
+  - mStartSample: 1737835
+    mEndSample: 1737835
+  - mStartSample: 1775582
+    mEndSample: 1775582
+  - mStartSample: 1813328
+    mEndSample: 1813328
+  - mStartSample: 1851074
+    mEndSample: 1851074
+  - mStartSample: 1888821
+    mEndSample: 1888821
+  - mStartSample: 1926567
+    mEndSample: 1926567
+  - mStartSample: 1965654
+    mEndSample: 1965654
+  - mStartSample: 2003454
+    mEndSample: 2003454
+  - mStartSample: 2041254
+    mEndSample: 2041254
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -112,4 +166,31 @@ MonoBehaviour:
   - mTextVal: Hit
   - mTextVal: Hit
   - mTextVal: Hit
-  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a000000
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  - mTextVal: Hit
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000

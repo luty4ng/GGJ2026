@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityGameFramework.Runtime;
 
 namespace GameLogic
 {
@@ -89,6 +90,7 @@ namespace GameLogic
         public void OnHitSuccess()
         {
             // TODO: 添加成功的视觉效果
+            GameEvent.Send(GameplayEventId.OnPlayerHitBeat);
             Debug.Log("Hit Success!");
         }
 
