@@ -29,7 +29,8 @@ namespace GameLogic
         /// </summary>
         [SerializeField]
         private NpcType _npcType = NpcType.Boss;
-
+        [SerializeField]
+        private GameObject m_hintUI;
         [SerializeField]
         private SpriteRenderer m_spriteRenderer;
         [SerializeField]
@@ -226,11 +227,13 @@ namespace GameLogic
             {
                 m_spriteRenderer.sortingOrder = 9;
                 m_spriteRenderer.color = Color.white;
+                m_hintUI.SetActive(false);
             }
             else
             {
                 m_spriteRenderer.sortingOrder = 1;
                 m_spriteRenderer.color = MoveCount != TotalMoveCount - 1 ? Color.black : Color.white;
+                m_hintUI.SetActive(true);
             }
         }
 
@@ -264,6 +267,8 @@ namespace GameLogic
             if (MoveCount == TotalMoveCount - 1)
             {
                 ApplyNormalImage();
+                if (!JudgeSuccess && !_rhythmController.IsFeverTime)
+                    GameModule.Sound.PlaySound("错误", "Sound");
             }
 
             // 最后一格：换回剪影图

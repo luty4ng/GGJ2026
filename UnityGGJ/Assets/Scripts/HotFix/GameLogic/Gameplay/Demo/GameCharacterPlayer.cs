@@ -63,8 +63,7 @@ namespace GameLogic
                 {
                     TryHitAnyNpc();
                     m_animator.SetTrigger("Punch");
-                    GameModule.Sound.StopAllLoadedSounds();
-                    GameModule.Sound.PlaySound("击打", "Sound");
+                    GameModule.Sound.PlaySound("拳击", "Sound");
                 }
             }
             else
@@ -74,22 +73,17 @@ namespace GameLogic
                 {
                     TryHitWithType(NpcType.Boss);
                     m_animator.SetTrigger("Bow");
-                    GameModule.Sound.StopAllLoadedSounds();
-                    GameModule.Sound.PlaySound("鞠躬", "Sound");
                 }
                 else if (Input.GetKeyDown(colleagueKey))
                 {
                     TryHitWithType(NpcType.Colleague);
                     m_animator.SetTrigger("Silent");
-                    GameModule.Sound.StopAllLoadedSounds();
-                    GameModule.Sound.PlaySound("尴尬", "Sound");
+
                 }
                 else if (Input.GetKeyDown(crushKey))
                 {
                     TryHitWithType(NpcType.Crush);
                     m_animator.SetTrigger("BeCool");
-                    GameModule.Sound.StopAllLoadedSounds();
-                    GameModule.Sound.PlaySound("耍帅", "Sound");
                 }
             }
         }
@@ -147,14 +141,6 @@ namespace GameLogic
         private void TryHitWithType(NpcType targetType)
         {
             Debug.Log($"[Player] TryHitWithType: {targetType}, lanes count: {lanes.Count}");
-
-            if (lanes.Count == 0)
-            {
-                Debug.LogWarning("[Player] lanes 列表为空！请在 Inspector 中设置 LaneController 引用");
-                OnHitEmpty();
-                return;
-            }
-
             bool hitAny = false;
 
             // 遍历所有轨道尝试命中
@@ -164,16 +150,17 @@ namespace GameLogic
                 {
                     hitAny = true;
                     break; // 一次只命中一个
-                }
-            }
 
-            if (hitAny)
-            {
-                OnHitSuccess();
-            }
-            else
-            {
-                OnHitEmpty();
+                }
+
+                if (hitAny)
+                {
+                    OnHitSuccess();
+                }
+                else
+                {
+                    OnHitEmpty();
+                }
             }
         }
 
@@ -185,6 +172,8 @@ namespace GameLogic
             // TODO: 添加成功的视觉效果
             GameEvent.Send(GameplayEventId.OnPlayerHitBeat);
             Debug.Log("Hit Success!");
+            if (!_isFeverTime)
+                GameModule.Sound.PlaySound("正确", "Sound");
         }
 
         /// <summary>
@@ -194,6 +183,7 @@ namespace GameLogic
         {
             // TODO: 添加失败的视觉效果
             Debug.Log("Hit Miss!");
+            // GameModule.Sound.PlaySound("错误", "Sound");
         }
 
         /// <summary>

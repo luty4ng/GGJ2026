@@ -20,6 +20,8 @@ namespace GameLogic
         private TextMeshProUGUI m_tmpCredits;
         private Button m_btnQuit;
         private TextMeshProUGUI m_tmpQuit;
+        private GameObject m_goTeachImage;
+        // private Button m_btnExitTeach;
         protected override void ScriptGenerator()
         {
             m_tmpMainTitle = FindChildComponent<TextMeshProUGUI>("CT_TopBar/m_tmpMainTitle");
@@ -31,10 +33,13 @@ namespace GameLogic
             m_tmpCredits = FindChildComponent<TextMeshProUGUI>("CT_MainPanel/m_btnCredits/m_tmpCredits");
             m_btnQuit = FindChildComponent<Button>("CT_MainPanel/m_btnQuit");
             m_tmpQuit = FindChildComponent<TextMeshProUGUI>("CT_MainPanel/m_btnQuit/m_tmpQuit");
+            m_goTeachImage = FindChild("m_goTeachImage").gameObject;
+            // m_btnExitTeach = FindChildComponent<Button>("m_btnExitTeach");
             m_btnStartGame.onClick.AddListener(UniTask.UnityAction(OnClickStartGameBtn));
             m_btnOption.onClick.AddListener(UniTask.UnityAction(OnClickOptionBtn));
             m_btnCredits.onClick.AddListener(UniTask.UnityAction(OnClickCreditsBtn));
             m_btnQuit.onClick.AddListener(UniTask.UnityAction(OnClickQuitBtn));
+            // m_btnExitTeach.onClick.AddListener(UniTask.UnityAction(OnClickExitTeachBtn));
         }
         #endregion
 
@@ -47,12 +52,12 @@ namespace GameLogic
         private async UniTaskVoid OnClickOptionBtn()
         {
             await UniTask.Yield();
-            Debug.Log("没做呢还");
+            m_goTeachImage.SetActive(true);
         }
         private async UniTaskVoid OnClickCreditsBtn()
         {
             await UniTask.Yield();
-            Debug.Log("没做呢还");
+
         }
         private async UniTaskVoid OnClickQuitBtn()
         {
@@ -64,9 +69,24 @@ namespace GameLogic
 #endif
         }
 
+        private async UniTaskVoid OnClickExitTeachBtn()
+        {
+            await UniTask.Yield();
+            m_goTeachImage.SetActive(false);
+        }
+
         async UniTask StartGameRunDirectlyAsync()
         {
             await GameModule.Scene.LoadSceneAsync("GameTest");
+        }
+
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                m_goTeachImage.SetActive(false);
+            }
         }
         #endregion
 

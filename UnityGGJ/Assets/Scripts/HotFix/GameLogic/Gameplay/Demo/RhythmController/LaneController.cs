@@ -124,11 +124,11 @@ namespace GameLogic
         #region Unity Lifecycle
         void OnEnable()
         {
-            // GameEvent.AddEventListener(GameplayEventId.OnBeat, OnBeat);
+            GameEvent.AddEventListener(GameplayEventId.OnBeat, OnBeat);
         }
         void OnDisable()
         {
-            // GameEvent.RemoveEventListener(GameplayEventId.OnBeat, OnBeat);
+            GameEvent.RemoveEventListener(GameplayEventId.OnBeat, OnBeat);
         }
         private bool m_isBeatSpawn = false;
         private void OnBeat()
@@ -202,8 +202,8 @@ namespace GameLogic
                    _spawnEvents[_pendingSpawnEventIdx].StartSample <= currentTime)
             {
                 KoreographyEvent evt = _spawnEvents[_pendingSpawnEventIdx];
-                // if (!_controller.IsFeverTime)
-                OnSpawnEventTriggered(evt);
+                if (!_controller.IsFeverTime)
+                    OnSpawnEventTriggered(evt);
                 _pendingSpawnEventIdx++;
             }
             m_isBeatSpawn = _controller.IsFeverTime;
@@ -269,7 +269,8 @@ namespace GameLogic
             if (npcPrefabs != null && npcPrefabs.Count > 0)
             {
                 // 随机选择一个预制体
-                GameObject selectedPrefab = npcPrefabs[UnityEngine.Random.Range(0, npcPrefabs.Count)];
+                int index = _controller.IsFeverTime ? 0 : UnityEngine.Random.Range(0, npcPrefabs.Count);
+                GameObject selectedPrefab = npcPrefabs[index];
                 if (selectedPrefab != null)
                 {
                     npcObj = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);

@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Luty
-  productName: Cosmos Game
+  companyName: CanCanNeed
+  productName: DelayNoMore
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -279,7 +279,14 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: fb47320928c6780468704d3a9e81f85f, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
@@ -799,7 +806,7 @@ PlayerSettings:
     Stadia: TextMeshPro;DOTWEEN
     Standalone: DIN_PROFILER;ENABLE_LOG;TextMeshPro;SHAPES_URP;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;DOTWEEN;WEATHERADE_INCLUDED;USING_URP;MIRROR;MIRROR_89_OR_NEWER;MIRROR_90_OR_NEWER;MIRROR_93_OR_NEWER;MIRROR_96_OR_NEWER;EDGEGAP_PLUGIN_SERVERS
     VisionOS: TextMeshPro;DOTWEEN
-    WebGL: DIN_PROFILER;ENABLE_LOG;TextMeshPro;UNITY_WECHAT_GAME;DOTWEEN
+    WebGL: DIN_PROFILER;ENABLE_LOG;TextMeshPro;UNITY_WECHAT_GAME;DOTWEEN;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
     Windows Store Apps: DIN_PROFILER;ENABLE_LOG;TextMeshPro;DOTWEEN
     XboxOne: TextMeshPro;DOTWEEN
     iPhone: DIN_PROFILER;ENABLE_LOG;TextMeshPro;DOTWEEN

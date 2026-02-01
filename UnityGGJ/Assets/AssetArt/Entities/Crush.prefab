@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcType: 3
+  m_hintUI: {fileID: 1160391351097574471}
   m_spriteRenderer: {fileID: 4772402577200723098}
   m_cutImage: {fileID: 21300000, guid: c502a15c89cf659428ff9514e7bb1e0a, type: 3}
   m_normalImage: {fileID: 21300000, guid: c502a15c89cf659428ff9514e7bb1e0a, type: 3}
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 915ea8d3971175549812064b6cade7e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e79f4ec4bc61dca4cb2466e603ccf3ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

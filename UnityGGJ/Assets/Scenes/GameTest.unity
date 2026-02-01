@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1004526da77338e4888795106a01bac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WinScore: 5
+  WinScore: 8
   FeverDuration: 5
   FeverHitWindowMS: 1000
   RhythmController: {fileID: 848806498}
@@ -483,6 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700310775}
   - component: {fileID: 700310774}
+  - component: {fileID: 700310776}
   m_Layer: 0
   m_Name: "\u5176\u4ED6\u73AF\u58831"
   m_TagString: Untagged
@@ -557,6 +558,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 47915316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700310776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700310773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618e6e35016159a488f42763c2c3f9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteA: {fileID: 21300000, guid: 7e341c7bbcddaa84092fab8d07c21d09, type: 3}
+  spriteB: {fileID: 21300000, guid: 8e5f2cdc71353a54e83f4254ad9e5c05, type: 3}
 --- !u!1 &797526022
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,37 +912,6 @@ MonoBehaviour:
   - {fileID: 449456642}
   - {fileID: 1511067935}
   - {fileID: 2140952916}
---- !u!1 &951342290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 951342291}
-  m_Layer: 0
-  m_Name: Sound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &951342291
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951342290}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230399530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604712400}
   - component: {fileID: 1604712399}
+  - component: {fileID: 1604712401}
   m_Layer: 0
   m_Name: "\u80CC\u666F1"
   m_TagString: Untagged
@@ -1202,6 +1187,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 47915316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1604712401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604712398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618e6e35016159a488f42763c2c3f9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteA: {fileID: 21300000, guid: 5c4e485ccd396044dbe4b88da28c8faa, type: 3}
+  spriteB: {fileID: 21300000, guid: a0ad427dcbb43cb4e8e4fc878b57d2cb, type: 3}
 --- !u!1 &1731152142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1523,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6846512086938916563, guid: acdb26de694445e4bae35d11208e7c1c, type: 3}
+      propertyPath: bossKey
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846512086938916563, guid: acdb26de694445e4bae35d11208e7c1c, type: 3}
+      propertyPath: crushKey
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846512086938916563, guid: acdb26de694445e4bae35d11208e7c1c, type: 3}
+      propertyPath: colleagueKey
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846512086938916563, guid: acdb26de694445e4bae35d11208e7c1c, type: 3}
       propertyPath: lanes.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1583,6 +1594,5 @@ SceneRoots:
   - {fileID: 848806497}
   - {fileID: 937467631}
   - {fileID: 215937834}
-  - {fileID: 951342291}
   - {fileID: 47915316}
   - {fileID: 1766058058}

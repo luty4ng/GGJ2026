@@ -11,7 +11,7 @@ namespace GameLogic
     {
         [Header("游戏设置")]
         [Tooltip("获胜所需分数（进入Fever Time）")]
-        public float WinScore = 20;
+        public float WinScore = 8;
 
         [Header("Fever Time设置")]
         [Tooltip("Fever Time持续时间（分数归零的时间，秒）")]
@@ -66,7 +66,7 @@ namespace GameLogic
             // 订阅LaneController的事件
             SubscribeLaneEvents();
             StartGame();
-            GameModule.Sound.SetVolume("Sound", 0.5f);
+            GameModule.Sound.SetVolume("Sound", 1f);
             RhythmController.audioCom.volume = 0.5f;
         }
 
@@ -228,6 +228,7 @@ namespace GameLogic
                 if (_currentScore >= WinScore)
                 {
                     EnterFeverTime();
+                    WinScore += 4f;
                 }
             }
             else
