@@ -127,6 +127,16 @@ namespace GameLogic
         /// </summary>
         private const float FEVER_ROTATION_AMOUNT = 720f;
 
+        /// <summary>
+        /// 生成后的保护时间（秒），在此期间不响应移动事件
+        /// </summary>
+        private const float SPAWN_PROTECTION_TIME = 0.1f;
+
+        /// <summary>
+        /// NPC生成的时间戳
+        /// </summary>
+        private float _spawnTime;
+
         #endregion
 
         #region Initialization
@@ -143,6 +153,8 @@ namespace GameLogic
             TotalMoveCount = totalMoves;
             MoveCount = 0;
             _movePositions = movePositions;
+            _isActive = true;
+            _spawnTime = Time.time;
 
             // 初始化时使用剪影图
             ApplySilhouetteImage();
@@ -240,7 +252,12 @@ namespace GameLogic
         /// <param name="evt">触发此次移动的Koreography事件</param>
         public void OnEventTriggeredMove(KoreographyEvent evt)
         {
-            if (!_isActive || IsFinished) return;
+            if (!_isActive || IsFinished) 
+                return;
+
+            // 生成保护时间内不响应移动事件
+            if (Time.time - _spawnTime < SPAWN_PROTECTION_TIME)
+                return;
             MoveCount++;
             LastMoveEvent = evt;
             PerformMove();

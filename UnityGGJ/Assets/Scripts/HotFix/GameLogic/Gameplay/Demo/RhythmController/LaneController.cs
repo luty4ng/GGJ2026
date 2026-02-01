@@ -179,7 +179,7 @@ namespace GameLogic
         private void ProcessSpawnEvents()
         {
             int currentTime = _controller.DelayedSampleTime;
-
+    
             // 处理所有已到达时间的生成事件
             while (_pendingSpawnEventIdx < _spawnEvents.Count &&
                    _spawnEvents[_pendingSpawnEventIdx].StartSample <= currentTime)
