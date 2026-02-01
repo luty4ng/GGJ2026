@@ -26,6 +26,11 @@ namespace GameLogic
         // 是否处于Fever Time状态
         private bool _isFeverTime = false;
         private bool _isPause = false;
+        private Animator m_animator;
+        void Awake()
+        {
+            m_animator = GetComponent<Animator>();
+        }
         void OnEnable()
         {
             GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
@@ -38,7 +43,7 @@ namespace GameLogic
         {
             _isPause = isPause;
         }
-        
+
         private void Update()
         {
             if (_isPause)
@@ -57,6 +62,9 @@ namespace GameLogic
                 if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1) && !Input.GetMouseButtonDown(2))
                 {
                     TryHitAnyNpc();
+                    m_animator.SetTrigger("Punch");
+                    GameModule.Sound.StopAllLoadedSounds();
+                    GameModule.Sound.PlaySound("击打", "Sound");
                 }
             }
             else
@@ -65,14 +73,23 @@ namespace GameLogic
                 if (Input.GetKeyDown(bossKey))
                 {
                     TryHitWithType(NpcType.Boss);
+                    m_animator.SetTrigger("Bow");
+                    GameModule.Sound.StopAllLoadedSounds();
+                    GameModule.Sound.PlaySound("鞠躬", "Sound");
                 }
                 else if (Input.GetKeyDown(colleagueKey))
                 {
                     TryHitWithType(NpcType.Colleague);
+                    m_animator.SetTrigger("Silent");
+                    GameModule.Sound.StopAllLoadedSounds();
+                    GameModule.Sound.PlaySound("尴尬", "Sound");
                 }
                 else if (Input.GetKeyDown(crushKey))
                 {
                     TryHitWithType(NpcType.Crush);
+                    m_animator.SetTrigger("BeCool");
+                    GameModule.Sound.StopAllLoadedSounds();
+                    GameModule.Sound.PlaySound("耍帅", "Sound");
                 }
             }
         }

@@ -168,6 +168,7 @@ namespace GameLogic
             if (m_spriteRenderer != null && m_cutImage != null)
             {
                 m_spriteRenderer.sprite = m_cutImage;
+
                 m_spriteRenderer.color = Color.black;
             }
         }
@@ -213,27 +214,23 @@ namespace GameLogic
         #endregion
 
         #region Beat Handling
-        private bool _isPause = false;
-        void OnEnable()
-        {
-            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
-        }
-        void OnDisable()
-        {
-            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
-        }
-        private void OnGamePause(bool isPause)
-        {
-            _isPause = isPause;
-        }
         private void Update()
         {
-            if (_isPause)
-                return;
             // 仍在倒数第二格且尚未被判定：窗口已过，按错或错失 → 在进入最后一格前切换生气图
-            if (MoveCount == TotalMoveCount - 1 && !IsInsideHitWindow(out float offset))
+            if (MoveCount == TotalMoveCount - 1 && !IsInsideHitWindow(out float offset) && !JudgeSuccess)
             {
                 ApplyResultImage();
+            }
+
+            if (_rhythmController != null && _rhythmController.IsFeverTime)
+            {
+                m_spriteRenderer.sortingOrder = 9;
+                m_spriteRenderer.color = Color.white;
+            }
+            else
+            {
+                m_spriteRenderer.sortingOrder = 1;
+                m_spriteRenderer.color = MoveCount != TotalMoveCount - 1 ? Color.black : Color.white;
             }
         }
 
@@ -243,7 +240,8 @@ namespace GameLogic
             int curTime = _rhythmController.DelayedSampleTime;
             int hitWindow = _rhythmController.HitWindowSampleWidth;
             offset = noteTime - curTime;
-            return Mathf.Abs(noteTime - curTime) <= hitWindow;
+            bool inWindow = Mathf.Abs(noteTime - curTime) <= hitWindow;
+            return inWindow;
         }
 
         /// <summary>
@@ -252,7 +250,7 @@ namespace GameLogic
         /// <param name="evt">触发此次移动的Koreography事件</param>
         public void OnEventTriggeredMove(KoreographyEvent evt)
         {
-            if (!_isActive || IsFinished) 
+            if (!_isActive || IsFinished)
                 return;
 
             // 生成保护时间内不响应移动事件
@@ -432,12 +430,15 @@ namespace GameLogic
         /// </summary>
         private void ApplyResultImage()
         {
-            if (!JudgeSuccess)
-            {
-                HasBeenJudged = true;
-                ApplyRandomAngryImage();
-                Debug.Log("[NPC] 判定失败（超时或按错）- 生气图");
-            }
+            // if (!JudgeSuccess)
+            // {
+            //     HasBeenJudged = true;
+            //     ApplyRandomAngryImage();
+            //     Debug.Log("[NPC] 判定失败（超时或按错）- 生气图");
+            // }
+            HasBeenJudged = true;
+            ApplyRandomAngryImage();
+            Debug.Log("[NPC] 判定失败（超时或按错）- 生气图");
         }
 
         #endregion

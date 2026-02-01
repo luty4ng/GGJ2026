@@ -66,6 +66,8 @@ namespace GameLogic
             // 订阅LaneController的事件
             SubscribeLaneEvents();
             StartGame();
+            GameModule.Sound.SetVolume("Sound", 0.5f);
+            RhythmController.audioCom.volume = 0.5f;
         }
 
         private bool m_isPauseOn = false;
@@ -127,6 +129,8 @@ namespace GameLogic
                 RhythmController.SetFeverTime(true, FeverHitWindowMS);
             }
 
+            GameEvent.Send(GameplayEventId.OnFeverTimeStart);
+
             // 通知Player进入Fever Time
             if (Player != null)
             {
@@ -151,6 +155,8 @@ namespace GameLogic
                 RhythmController.SetFeverTime(false, 0f);
             }
 
+            GameEvent.Send(GameplayEventId.OnFeverTimeEnd);
+
             // 通知Player退出Fever Time
             if (Player != null)
             {
@@ -165,7 +171,8 @@ namespace GameLogic
         /// </summary>
         private void SubscribeLaneEvents()
         {
-            if (RhythmController == null) return;
+            if (RhythmController == null)
+                return;
 
             foreach (var lane in RhythmController.lanes)
             {

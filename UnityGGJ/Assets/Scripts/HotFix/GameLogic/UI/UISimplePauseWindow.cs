@@ -6,7 +6,7 @@ using UnityGameFramework.Runtime;
 using UGFExtensions.Await;
 namespace GameLogic
 {
-    [Window(UILayer.UI, resetTransformOnLoad: true)]
+    [Window(UILayer.UI, resetTransformOnLoad: false)]
     public class UISimplePauseWindow : UIWindow
     {
         #region 脚本工具生成的代码
@@ -62,7 +62,7 @@ namespace GameLogic
         }
         private async UniTaskVoid OnClickRestartBtn()
         {
-            await UniTask.Yield();
+            GameModule.UI.CloseUI<UIFevelLineWindow>();
             await GameModule.Scene.UnloadSceneAsync("GameTest");
             await GameModule.Scene.LoadSceneAsync("GameTest");
             GameModule.UI.CloseUI<UISimplePauseWindow>();

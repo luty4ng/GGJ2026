@@ -5,6 +5,7 @@ using SonicBloom.Koreo;
 using System;
 using Sirenix.OdinInspector;
 using UnityGameFramework.Runtime;
+using System.Collections;
 
 namespace GameLogic
 {
@@ -15,7 +16,8 @@ namespace GameLogic
     public class LaneController : MonoBehaviour
     {
         #region Fields
-
+        [Header("最大事件数")]
+        public int maxEndingEventCount = 500;
         [Header("轨道设置")]
         [Tooltip("匹配此轨道的Payload字符串列表")]
         public List<string> matchedPayloads = new List<string>();
@@ -36,6 +38,8 @@ namespace GameLogic
         [Header("位置节点")]
         [Tooltip("NPC移动的目标位置节点列表")]
         public List<Transform> movePositions = new List<Transform>();
+
+
 
         // 分配给此轨道的移动事件
         private List<KoreographyEvent> _moveEvents = new List<KoreographyEvent>();
@@ -118,25 +122,32 @@ namespace GameLogic
         #endregion
 
         #region Unity Lifecycle
-
-        private bool _isPause = false;
         void OnEnable()
         {
-            GameEvent.AddEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+            // GameEvent.AddEventListener(GameplayEventId.OnBeat, OnBeat);
         }
         void OnDisable()
         {
-            GameEvent.RemoveEventListener<bool>(GameplayEventId.OnGamePause, OnGamePause);
+            // GameEvent.RemoveEventListener(GameplayEventId.OnBeat, OnBeat);
         }
-        private void OnGamePause(bool isPause)
+        private bool m_isBeatSpawn = false;
+        private void OnBeat()
         {
-            _isPause = isPause;
+            if (m_isBeatSpawn)
+            {
+                StartCoroutine(SpawnNextFrame());
+                Debug.Log("BeatSpawn");
+            }
+        }
+
+        public IEnumerator SpawnNextFrame()
+        {
+            yield return null;
+            OnSpawnEventTriggered(null);
         }
 
         private void Update()
         {
-            if (_isPause)
-                return;
             if (_controller == null)
                 return;
 
@@ -171,6 +182,13 @@ namespace GameLogic
                 OnMoveEventTriggered(evt);
                 _pendingMoveEventIdx++;
             }
+
+            if (_pendingMoveEventIdx >= _moveEvents.Count || _pendingMoveEventIdx >= maxEndingEventCount)
+            {
+                Debug.Log("[LaneController] 所有移动事件已处理完毕");
+                GameModule.UI.ShowUIAsync<UISimpleResultWindow>();
+                _controller.audioCom.Stop();
+            }
         }
 
         /// <summary>
@@ -179,15 +197,16 @@ namespace GameLogic
         private void ProcessSpawnEvents()
         {
             int currentTime = _controller.DelayedSampleTime;
-    
             // 处理所有已到达时间的生成事件
             while (_pendingSpawnEventIdx < _spawnEvents.Count &&
                    _spawnEvents[_pendingSpawnEventIdx].StartSample <= currentTime)
             {
                 KoreographyEvent evt = _spawnEvents[_pendingSpawnEventIdx];
+                // if (!_controller.IsFeverTime)
                 OnSpawnEventTriggered(evt);
                 _pendingSpawnEventIdx++;
             }
+            m_isBeatSpawn = _controller.IsFeverTime;
         }
 
         /// <summary>
@@ -243,6 +262,8 @@ namespace GameLogic
         private GameCharacterNpc SpawnNpc()
         {
             Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : transform.position;
+            if (_activeNpcs.Count > movesPerNpc || _activeNpcs.Any(npc => npc.MoveCount == 0))
+                return null;
 
             GameObject npcObj;
             if (npcPrefabs != null && npcPrefabs.Count > 0)

@@ -6,5 +6,7 @@ namespace GameLogic
         public const string OnBeat = "GameplayEventId.OnBeat";
         public const string OnPlayerHitBeat = "GameplayEventId.OnPlayerHit";
         public const string OnGamePause = "GameplayEventId.OnGamePause";
+        public const string OnFeverTimeStart = "GameplayEventId.OnFeverTimeStart";
+        public const string OnFeverTimeEnd = "GameplayEventId.OnFeverTimeEnd";
     }
 }
